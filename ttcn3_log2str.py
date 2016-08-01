@@ -56,11 +56,10 @@ class ELEMENT():
     self.begin=tokens[0].begin
     self.end=tokens[-1].end
 
-
 #DEBUG:
 #    print tokens
 
-    if len(tokens)>2 and tokens[1].str==":=":
+    if len(tokens)>=2 and tokens[1].str==":=":
       self.name=tokens[0].str
       tokens.pop(0)
       tokens.pop(0)
@@ -140,7 +139,7 @@ def process(ret):
     if r.depth==0: continue
 
     #add name if was set before "{"
-    if len(tmp)==0 and i>2:
+    if len(tmp)==0 and i>=2:
       if ret[i-1].str==":=" and ret[i-2].num == NAME:
         tmp.append(ret[i-2])
         tmp.append(ret[i-1])
@@ -175,7 +174,7 @@ def ttcnlog2dict(data):
 
 ############################################
 if __name__=="__main__":
-  data="""
+  data=u"""
    hello
    DAWID{ a := 0, b := "d\\"upa", c := omit, d := { 1, 2, 3 }, d2 := { a:= false, b:= {1} }, e := false, f := { {}, { 1.0 }, { 0x2, 12 }, { 3.0, 3, 3 } } }
    ass:={1,2,3}
@@ -186,6 +185,3 @@ if __name__=="__main__":
   from pprint import pprint
   pprint(ttcnlog2dict(data))
 ############################################
-
-
-
