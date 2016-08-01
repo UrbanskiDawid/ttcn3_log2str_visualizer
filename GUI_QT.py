@@ -50,7 +50,7 @@ class Window(QtGui.QWidget):
 
 
     def fill(self):
-        for i in range(0,self.model.rowCount()): self.model.removeRow(i)
+        self.model.removeRows(0,self.model.rowCount())
 
         text = unicode(self.edit.toPlainText())
         data = ttcnlog2dict(text)
